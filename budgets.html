@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UangSaku Pro — Anggaran</title>
+  <meta name="description" content="Atur limit bulanan dan per kategori untuk mengendalikan pengeluaran." />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; font-src 'self' data:; object-src 'none';" />
+  <meta name="theme-color" content="#0d9488" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body data-page="budgets">
+  <a class="skip-link" href="#main">Lewati ke konten utama</a>
+  <header class="app-header">
+    <div class="brand">
+      <span aria-hidden="true">💸</span>
+      <div>
+        <p class="app-title">UangSaku Pro</p>
+        <p class="app-tagline">Budgeting Pelajar Offline-First</p>
+      </div>
+    </div>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-list">
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/transactions.html">Transaksi</a></li>
+        <li><a href="/budgets.html">Anggaran</a></li>
+        <li><a href="/goals.html">Target</a></li>
+        <li><a href="/reports.html">Laporan</a></li>
+        <li><a href="/settings.html">Pengaturan</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main" class="container">
+    <section class="card">
+      <header>
+        <h1>Limit bulanan</h1>
+        <p class="muted">Tetapkan batas global untuk kontrol cepat.</p>
+      </header>
+      <form id="globalBudgetForm" class="form-inline">
+        <label>Nominal limit (Rp)
+          <input type="number" name="amount" min="0" step="10000" required />
+        </label>
+        <button type="submit" class="btn primary">Simpan limit</button>
+      </form>
+      <p id="globalBudgetStatus" class="muted"></p>
+    </section>
+
+    <section class="card">
+      <header>
+        <h2>Limit per kategori</h2>
+        <p class="muted">Dapatkan notifikasi visual ketika mendekati batas.</p>
+      </header>
+      <form id="categoryBudgetForm" class="form-inline">
+        <label>Kategori
+          <select name="category" required id="budgetCategory"></select>
+        </label>
+        <label>Limit (Rp)
+          <input type="number" name="amount" min="0" step="5000" required />
+        </label>
+        <button type="submit" class="btn">Atur</button>
+      </form>
+      <ul id="categoryBudgetList" class="list"></ul>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <header>
+        <h2>Status pemakaian</h2>
+        <p class="muted">Pantau warna indikator untuk tahu kapan harus hemat.</p>
+      </header>
+      <ul id="budgetAlerts" class="list alerts"></ul>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <p>Dapatkan pengingat visual ketika limit hampir habis.</p>
+  </footer>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

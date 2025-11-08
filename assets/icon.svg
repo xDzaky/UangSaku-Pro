@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ikon UangSaku Pro">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#g)" />
+  <path d="M32 56c0-14.36 13-26 32-26s32 11.64 32 26-13 26-32 26-32 11.64-32 26" fill="none" stroke="#ecfccb" stroke-width="8" stroke-linecap="round" />
+  <circle cx="64" cy="56" r="14" fill="#f0fdf4" />
+  <path d="M60 38h8v40h-8z" fill="#d1fae5" />
+</svg>

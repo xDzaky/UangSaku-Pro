@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UangSaku Pro — Transaksi</title>
+  <meta name="description" content="Kelola pemasukan dan pengeluaran: tambah, edit, hapus, serta filter berdasarkan kategori atau tanggal." />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; font-src 'self' data:; object-src 'none';" />
+  <meta name="theme-color" content="#0d9488" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body data-page="transactions">
+  <a class="skip-link" href="#main">Lewati ke konten utama</a>
+  <header class="app-header">
+    <div class="brand">
+      <span aria-hidden="true">💸</span>
+      <div>
+        <p class="app-title">UangSaku Pro</p>
+        <p class="app-tagline">Budgeting Pelajar Offline-First</p>
+      </div>
+    </div>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-list">
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/transactions.html">Transaksi</a></li>
+        <li><a href="/budgets.html">Anggaran</a></li>
+        <li><a href="/goals.html">Target</a></li>
+        <li><a href="/reports.html">Laporan</a></li>
+        <li><a href="/settings.html">Pengaturan</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main" class="container">
+    <section class="card">
+      <header class="section-header">
+        <div>
+          <h1>Daftar transaksi</h1>
+          <p class="muted">Gunakan filter untuk fokus ke waktu/kategori tertentu.</p>
+        </div>
+        <button class="btn primary" data-action="open-transaction-modal" aria-haspopup="dialog">+ Transaksi</button>
+      </header>
+      <form id="transactionFilters" class="filters" aria-label="Filter transaksi">
+        <label>Mulai
+          <input type="date" name="startDate" />
+        </label>
+        <label>Selesai
+          <input type="date" name="endDate" />
+        </label>
+        <label>Kategori
+          <select name="category" id="categoryFilter"></select>
+        </label>
+        <label>Cari
+          <input type="search" name="query" placeholder="Contoh: kopi, pulsa" aria-label="Cari transaksi" />
+        </label>
+        <button type="submit" class="btn">Terapkan</button>
+        <button type="reset" class="btn ghost">Reset</button>
+      </form>
+      <div class="responsive-table" aria-live="polite">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Kategori</th>
+              <th>Deskripsi</th>
+              <th>Jenis</th>
+              <th>Nominal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <dialog id="transactionDialog" aria-modal="true">
+    <form id="transactionForm">
+      <header>
+        <h2 id="transactionDialogTitle">Tambah transaksi</h2>
+      </header>
+      <div class="form-grid">
+        <label>Jenis
+          <select name="type" required>
+            <option value="income">Pemasukan</option>
+            <option value="expense">Pengeluaran</option>
+          </select>
+        </label>
+        <label>Nominal (Rp)
+          <input type="number" name="amount" min="0" step="100" required />
+        </label>
+        <label>Tanggal
+          <input type="date" name="date" required />
+        </label>
+        <label>Kategori
+          <select name="category" id="categoryInput" required></select>
+        </label>
+        <label>Catatan
+          <input type="text" name="note" maxlength="60" placeholder="Opsional" />
+        </label>
+      </div>
+      <footer class="dialog-actions">
+        <button type="submit" class="btn primary">Simpan</button>
+        <button type="button" class="btn ghost" data-action="close-dialog">Batal</button>
+      </footer>
+    </form>
+  </dialog>
+  <footer class="app-footer">
+    <p>Shortcut: tekan `n` untuk menambah transaksi lebih cepat.</p>
+  </footer>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
