@@ -46,7 +46,8 @@ async function bootstrap() {
   window.addEventListener('settings:update', handleSettingBroadcast);
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/js/sw.js').catch(() => {});
+    // Daftarkan SW relatif terhadap halaman agar Live Server (public/) langsung berfungsi
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   }
 
   const controller = CONTROLLERS[page];

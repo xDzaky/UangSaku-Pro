@@ -1,27 +1,27 @@
 const CACHE = 'uangsaku-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/transactions.html',
-  '/budgets.html',
-  '/goals.html',
-  '/reports.html',
-  '/settings.html',
-  '/offline.html',
-  '/css/styles.css',
-  '/js/app.js',
-  '/js/ui.js',
-  '/js/idb.js',
-  '/js/store-transactions.js',
-  '/js/store-budgets.js',
-  '/js/store-goals.js',
-  '/js/store-settings.js',
-  '/js/data-sync.js',
-  '/js/charts.js',
-  '/js/a11y.js',
-  '/js/constants.js',
-  '/js/sanitize.js',
-  '/assets/icon.svg'
+  'index.html',
+  'transactions.html',
+  'budgets.html',
+  'goals.html',
+  'reports.html',
+  'settings.html',
+  'offline.html',
+  'css/styles.css',
+  'js/app.js',
+  'js/ui.js',
+  'js/idb.js',
+  'js/store-transactions.js',
+  'js/store-budgets.js',
+  'js/store-goals.js',
+  'js/store-settings.js',
+  'js/data-sync.js',
+  'js/charts.js',
+  'js/a11y.js',
+  'js/constants.js',
+  'js/sanitize.js',
+  'assets/icon.svg',
+  'manifest.webmanifest'
 ];
 
 self.addEventListener('install', event => {
@@ -32,7 +32,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
   );
 });
 
@@ -42,7 +42,7 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request).catch(() => caches.match('/offline.html'))
+      fetch(request).catch(() => caches.match('offline.html'))
     );
     return;
   }
@@ -55,3 +55,4 @@ self.addEventListener('fetch', event => {
     }).catch(() => cacheResponse))
   );
 });
+
