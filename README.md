@@ -37,17 +37,32 @@ Membangun aplikasi web statis, ringan, dan installable (PWA) yang menyimpan selu
 
 ## Cara Menjalankan (Lokal)
 
-1) Jalankan server statis (pilih salah satu):
+Catatan nama folder: saat Anda mengunduh (Download ZIP) dari GitHub, nama folder biasanya menjadi `UangSaku-Pro-main`. Panduan ini mengasumsikan Anda berada di folder tersebut.
+
+Cara paling mudah (Disarankan untuk pemula) — Live Server di VS Code:
+
+1) Unduh proyek ini (Download ZIP), ekstrak, lalu buka folder `UangSaku-Pro-main` di VS Code.
+2) Pasang ekstensi “Live Server” (penerbit: Ritwick Dey) dari Marketplace VS Code.
+3) Di panel Explorer, klik kanan `index.html` → pilih “Open with Live Server”.
+4) Browser akan terbuka otomatis (alamat biasanya `http://127.0.0.1:5500/` atau mirip) dan aplikasi siap dipakai.
+
+Tips Live Server:
+- Jika ikon/fitur offline belum tampil, muat ulang tab. Untuk perubahan besar, Stop lalu Start kembali Live Server.
+- Aplikasi ini PWA (ada Service Worker); pertama kali butuh 1–2 detik untuk siap offline.
+
+Alternatif (opsional, untuk yang sudah memasang Node.js):
 
 ```bash
-npx http-server public -p 5173 -c-1
+# Dari folder UangSaku-Pro-main (root proyek), jalankan salah satu:
+npx http-server -p 5173 -c-1 .
 # atau
-npx serve public -l 5173
+npx serve -l 5173 .
+
+# Lalu buka di browser:
+http://localhost:5173/index.html
 ```
 
-2) Buka `http://localhost:5173/index.html` lalu install sebagai PWA jika diinginkan.
-
-Catatan: seluruh data tersimpan di IndexedDB browser. Lakukan ekspor JSON berkala sebagai cadangan.
+Privasi & penyimpanan data: seluruh data tersimpan lokal di IndexedDB browser Anda. Lakukan ekspor data (JSON) secara berkala sebagai cadangan.
 
 ## Cara Menggunakan
 
@@ -86,10 +101,16 @@ Catatan: seluruh data tersimpan di IndexedDB browser. Lakukan ekspor JSON berkal
 ## Struktur Proyek
 
 ```
-public/
-  css/styles.css
+UangSaku-Pro-main/
+  index.html, budgets.html, transactions.html, goals.html, reports.html, settings.html, offline.html
+  css/
+    styles.css
   js/
     app.js, ui.js, idb.js
-    store-*.js, charts.js, a11y.js, sanitize.js, data-sync.js, sw.js
-  *.html, offline.html, manifest.webmanifest, assets/icon.svg
+    store-*.js, charts.js, a11y.js, sanitize.js, data-sync.js
+    constants.js
+  assets/
+    icon.svg
+  sw.js
+  manifest.webmanifest
 ```
